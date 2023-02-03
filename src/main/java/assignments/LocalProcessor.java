@@ -21,7 +21,7 @@ public class LocalProcessor {
     protected String processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
-    private static List<String> stringArrayList = new LinkedList<>();
+    private List<String> stringArrayList;
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
                           Scanner informationScanner, List<String> stringArrayList) {
@@ -30,7 +30,7 @@ public class LocalProcessor {
         this.processorVersion = processorVersion;
         this.valueOfCheap = valueOfCheap;
         this.informationScanner = informationScanner;
-        LocalProcessor.stringArrayList = stringArrayList;
+        this.stringArrayList = stringArrayList;
     }
 
     public LocalProcessor() {
