@@ -36,20 +36,20 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listIterator(List<String> stringList) {
+    public void listIterator(List<String> stringList) throws IllegalStateException {
+
         stringArrayList = new LinkedList<>(stringList);
-        for (int i = 0; i < period; i++) {
-            System.out.println(stringArrayList.get(i).hashCode());
+
+        for (String s : stringArrayList) {
+            System.out.println(s.hashCode());
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullNameProcessorGenerator(List<String> stringList) {
+    public String fullNameProcessorGenerator(List<String> stringList) throws RuntimeException {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < stringArrayList.size(); i++) {
-
-            builder.append(stringList.get(i)).append(' ');
-
+            builder.append(stringList.get(i)).append(" ");
         }
         processorName = builder.toString();
         return processorName;
@@ -63,5 +63,11 @@ public class LocalProcessor {
                 builder.append(informationScanner.nextLine());
             }
         processorVersion = builder.toString();
+    }
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + stringArrayList.hashCode();
+        return result;
     }
 }
