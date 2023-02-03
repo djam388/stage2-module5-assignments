@@ -41,16 +41,24 @@ public class LocalProcessor {
         stringArrayList = new LinkedList<>(stringList);
 
         for (String s : stringArrayList) {
-            System.out.println(s.hashCode());
+            try
+            {
+                System.out.println(s.hashCode());
+            }
+            catch (Exception e) {
+                throw new IllegalStateException(super.toString(), e);
+            }
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
     public String fullNameProcessorGenerator(List<String> stringList) throws RuntimeException {
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < stringArrayList.size(); i++) {
-            builder.append(stringList.get(i)).append(" ");
+
+        for (String s : stringList) {
+            builder.append(s).append(" ");
         }
+
         processorName = builder.toString();
         return processorName;
     }
