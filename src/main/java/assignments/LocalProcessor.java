@@ -3,6 +3,7 @@ package assignments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
@@ -19,10 +20,10 @@ public class LocalProcessor {
     protected String processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
-    private static LinkedList<String> stringArrayList = new LinkedList<>();
+    private static List<String> stringArrayList = new LinkedList<>();
 
     public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
-                          Scanner informationScanner, LinkedList<String> stringArrayList) {
+                          Scanner informationScanner, List<String> stringArrayList) {
         this.processorName = processorName;
         this.period = period;
         this.processorVersion = processorVersion;
@@ -35,7 +36,7 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listIterator(LinkedList<String> stringList) {
+    public void listIterator(List<String> stringList) {
         stringArrayList = new LinkedList<>(stringList);
         for (int i = 0; i < period; i++) {
             System.out.println(stringArrayList.get(i).hashCode());
@@ -43,7 +44,7 @@ public class LocalProcessor {
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullNameProcessorGenerator(LinkedList<String> stringList) {
+    public String fullNameProcessorGenerator(List<String> stringList) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < stringArrayList.size(); i++) {
 
