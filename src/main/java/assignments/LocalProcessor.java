@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.lang.StringBuilder;
 
 import assignments.annotations.FullNameProcessorGeneratorAnnotation;
 import assignments.annotations.ListIteratorAnnotation;
@@ -62,11 +63,5 @@ public class LocalProcessor {
                 builder.append(informationScanner.nextLine());
             }
         processorVersion = builder.toString();
-    }
-    @Override
-    public int hashCode() {
-        int result = 17;
-        result = 31 * result + stringArrayList.hashCode();
-        return result;
     }
 }
