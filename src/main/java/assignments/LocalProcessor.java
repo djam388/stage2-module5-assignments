@@ -36,23 +36,15 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listIterator(List<String> stringList) throws IllegalStateException {
+    public void listIterator(List<String> stringList) {
 
-        stringArrayList = new LinkedList<>(stringList);
-
-        for (String s : stringArrayList) {
-            try
-            {
-                System.out.println(s.hashCode());
-            }
-            catch (Exception e) {
-                throw new IllegalStateException(super.toString(), e);
-            }
+        for (String s : stringList) {
+            System.out.println(s.hashCode());
         }
     }
 
     @FullNameProcessorGeneratorAnnotation
-    public String fullNameProcessorGenerator(List<String> stringList) throws RuntimeException {
+    public String fullNameProcessorGenerator(List<String> stringList) {
         StringBuilder builder = new StringBuilder();
 
         for (String s : stringList) {
