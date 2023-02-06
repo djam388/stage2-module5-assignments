@@ -2,6 +2,7 @@ package assignments;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,12 +19,12 @@ import lombok.Setter;
 public class LocalProcessor {
     private String processorName;
     private Long period = 10_000_000_000_000L;
-    protected String processorVersion;
+    private StringBuilder processorVersion;
     private Integer valueOfCheap;
     private Scanner informationScanner;
     private List<String> stringArrayList;
 
-    public LocalProcessor(String processorName, Long period, String processorVersion, Integer valueOfCheap,
+    public LocalProcessor(String processorName, Long period, StringBuilder processorVersion, Integer valueOfCheap,
                           Scanner informationScanner, List<String> stringArrayList) {
         this.processorName = processorName;
         this.period = period;
@@ -37,7 +38,7 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listIterator(List<String> stringList) {
+    public void listIterator(List<String> stringList) throws InvocationTargetException {
 
         for (String s : stringList) {
             System.out.println(s.hashCode());
@@ -60,8 +61,7 @@ public class LocalProcessor {
         StringBuilder builder = new StringBuilder();
             informationScanner = new Scanner(file);
             while (informationScanner.hasNext()) {
-                builder.append(informationScanner.nextLine());
+                processorVersion.append(informationScanner.nextLine());
             }
-        processorVersion = builder.toString();
     }
 }
