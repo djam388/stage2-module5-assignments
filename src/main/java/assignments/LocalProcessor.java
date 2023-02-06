@@ -3,7 +3,7 @@ package assignments;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.LinkedList;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Scanner;
 import java.lang.StringBuilder;
@@ -38,8 +38,18 @@ public class LocalProcessor {
     }
 
     @ListIteratorAnnotation
-    public void listIterator(List<String> stringList) throws InvocationTargetException {
+    public void listIterator(List<String> stringList) {
 
+        Class<?> theClass = LocalProcessor.class;
+        try {
+            Method method = theClass.getMethod("listIterate", List.class);
+            method.invoke(LocalProcessor.class, stringList);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void listIterate(List<String> stringList) {
         for (String s : stringList) {
             System.out.println(s.hashCode());
         }
@@ -57,11 +67,20 @@ public class LocalProcessor {
     }
 
     @ReadFullProcessorNameAnnotation
-    public void readFullProcessorName(File file) throws FileNotFoundException {
+    public void readFullProcessorName(File file){
         StringBuilder builder = new StringBuilder();
+        try {
             informationScanner = new Scanner(file);
             while (informationScanner.hasNext()) {
                 processorVersion.append(informationScanner.nextLine());
             }
+        }
+        catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        finally {
+            informationScanner.close();
+        }
+
     }
 }
