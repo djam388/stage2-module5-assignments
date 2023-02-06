@@ -43,7 +43,7 @@ public class LocalProcessor {
         Class<?> theClass = LocalProcessor.class;
         try {
             Method method = theClass.getMethod("listIterate", List.class);
-            method.invoke(LocalProcessor.class, stringList);
+            method.invoke(theClass, stringList);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
